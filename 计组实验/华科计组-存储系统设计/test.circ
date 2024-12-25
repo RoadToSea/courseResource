@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.15.0.2.exe" version="1.0">
+  This file is intended to be loaded by Logisim http://logisim.altervista.org
+
+  <lib name="0" desc="" location="">
+    <component name="CPU">
+      <pin name="A15" type="output"/>
+      <pin name="A14" type="output"/>
+      <pin name="A13" type="output"/>
+      <pin name="A12" type="output"/>
+      <pin name="A11" type="output"/>
+      <pin name="A10" type="output"/>
+      <pin name="A9" type="output"/>
+      <pin name="A8" type="output"/>
+      <pin name="A7" type="output"/>
+      <pin name="A6" type="output"/>
+      <pin name="A5" type="output"/>
+      <pin name="A4" type="output"/>
+      <pin name="A3" type="output"/>
+      <pin name="A2" type="output"/>
+      <pin name="A1" type="output"/>
+      <pin name="A0" type="output"/>
+      <pin name="RD" type="output"/>
+      <pin name="WR" type="output"/>
+    </component>
+    <component name="ROM">
+      <pin name="A12" type="input"/>
+      <pin name="A11" type="input"/>
+      <pin name="A10" type="input"/>
+      <pin name="A9" type="input"/>
+      <pin name="A8" type="input"/>
+      <pin name="A7" type="input"/>
+      <pin name="A6" type="input"/>
+      <pin name="A5" type="input"/>
+      <pin name="A4" type="input"/>
+      <pin name="A3" type="input"/>
+      <pin name="A2" type="input"/>
+      <pin name="A1" type="input"/>
+      <pin name="A0" type="input"/>
+      <pin name="CS" type="input"/>
+      <pin name="OE" type="input"/>
+      <pin name="D7" type="output"/>
+      <pin name="D6" type="output"/>
+      <pin name="D5" type="output"/>
+      <pin name="D4" type="output"/>
+      <pin name="D3" type="output"/>
+      <pin name="D2" type="output"/>
+      <pin name="D1" type="output"/>
+      <pin name="D0" type="output"/>
+    </component>
+    <component name="RAM">
+      <pin name="A11" type="input"/>
+      <pin name="A10" type="input"/>
+      <pin name="A9" type="input"/>
+      <pin name="A8" type="input"/>
+      <pin name="A7" type="input"/>
+      <pin name="A6" type="input"/>
+      <pin name="A5" type="input"/>
+      <pin name="A4" type="input"/>
+      <pin name="A3" type="input"/>
+      <pin name="A2" type="input"/>
+      <pin name="A1" type="input"/>
+      <pin name="A0" type="input"/>
+      <pin name="CS" type="input"/>
+      <pin name="OE" type="input"/>
+      <pin name="WE" type="input"/>
+      <pin name="D3" type="input"/>
+      <pin name="D2" type="input"/>
+      <pin name="D1" type="input"/>
+      <pin name="D0" type="input"/>
+    </component>
+  </lib>
+  <circuit name="Main Circuit">
+    <comp lib="0" loc="(100,100)" name="CPU"/>
+    <comp lib="0" loc="(300,100)" name="ROM"/>
+    <comp lib="0" loc="(300,300)" name="ROM"/>
+    <comp lib="0" loc="(500,100)" name="RAM"/>
+    <comp lib="0" loc="(500,300)" name="RAM"/>
+
+    <!-- CPU to ROM1 Connections -->
+    <wire from="(110,110)" to="(290,110)"/> <!-- A12 -->
+    <wire from="(110,120)" to="(290,120)"/> <!-- A11 -->
+    <wire from="(110,130)" to="(290,130)"/> <!-- A10 -->
+    <wire from="(110,140)" to="(290,140)"/> <!-- A9 -->
+    <wire from="(110,150)" to="(290,150)"/> <!-- A8 -->
+    <wire from="(110,160)" to="(290,160)"/> <!-- A7 -->
+    <wire from="(110,170)" to="(290,170)"/> <!-- A6 -->
+    <wire from="(110,180)" to="(290,180)"/> <!-- A5 -->
+    <wire from="(110,190)" to="(290,190)"/> <!-- A4 -->
+    <wire from="(110,200)" to="(290,200)"/> <!-- A3 -->
+    <wire from="(110,210)" to="(290,210)"/> <!-- A2 -->
+    <wire from="(110,220)" to="(290,220)"/> <!-- A1 -->
+    <wire from="(110,230)" to="(290,230)"/> <!-- A0 -->
+    <wire from="(110,240)" to="(290,240)"/> <!-- CS (A13) -->
+    <wire from="(110,250)" to="(290,250)"/> <!-- OE (RD) -->
+
+    <!-- CPU to ROM2 Connections -->
+    <wire from="(110,110)" to="(290,310)"/> <!-- A12 -->
+    <wire from="(110,120)" to="(290,320)"/> <!-- A11 -->
+    <wire from="(110,130)" to="(290,330)"/> <!-- A10 -->
+    <wire from="(110,140)" to="(290,340)"/> <!-- A9 -->
+    <wire from="(110,150)" to="(290,350)"/> <!-- A8 -->
+    <wire from="(110,160)" to="(290,360)"/> <!-- A7 -->
+    <wire from="(110,170)" to="(290,370)"/> <!-- A6 -->
+    <wire from="(110,180)" to="(290,380)"/> <!-- A5 -->
+    <wire from="(110,190)" to="(290,390)"/> <!-- A4 -->
+    <wire from="(110,200)" to="(290,400)"/> <!-- A3 -->
+    <wire from="(110,210)" to="(290,410)"/> <!-- A2 -->
+    <wire from="(110,220)" to="(290,420)"/> <!-- A1 -->
+    <wire from="(110,230)" to="(290,430)"/> <!-- A0 -->
+    <wire from="(110,240)" to="(290,440)"/> <!-- CS (A13) -->
+    <wire from="(110,250)" to="(290,450)"/> <!-- OE (RD) -->
+
+    <!-- CPU to RAM1 Connections -->
+    <wire from="(110,120)" to="(490,120)"/> <!-- A11 -->
+    <wire from="(110,130)" to="(490,130)"/> <!-- A10 -->
+    <wire from="(110,140)" to="(490,140)"/> <!-- A9 -->
+    <wire from="(110,150)" to="(490,150)"/> <!-- A8 -->
+    <wire from="(110,160)" to="(490,160)"/> <!-- A7 -->
+    <wire from="(110,170)" to="(490,170)"/> <!-- A6 -->
+    <wire from="(110,180)" to="(490,180)"/> <!-- A5 -->
+    <wire from="(110,190)" to="(490,190)"/> <!-- A4 -->
+    <wire from="(110,200)" to="(490,200)"/> <!-- A3 -->
+    <wire from="(110,210)" to="(490,210)"/> <!-- A2 -->
+    <wire from="(110,220)" to="(490,220)"/> <!-- A1 -->
+    <wire from="(110,230)" to="(490,230)"/> <!-- A0 -->
+    <wire from="(110,240)" to="(490,240)"/> <!-- CS (A12) -->
+    <wire from="(110,250)" to="(490,250)"/> <!-- OE (RD) -->
+    <wire from="(110,260)" to="(490,260)"/> <!-- WE (WR) -->
+
+    <!-- CPU to RAM2 Connections -->
+    <wire from="(110,120)" to="(490,320)"/> <!-- A11 -->
+    <wire from="(110,130)" to="(490,330)"/> <!-- A10 -->
+    <wire from="(110,140)" to="(490,340)"/> <!-- A9 -->
+    <wire from="(110,150)" to="(490,350)"/> <!-- A8 -->
+    <wire from="(110,160)" to="(490,360)"/> <!-- A7 -->
+    <wire from="(110,170)" to="(490,370)"/> <!-- A6 -->
+    <wire from="(110,180)" to="(490,380)"/> <!-- A5 -->
+    <wire from="(110,190)" to="(490,390)"/> <!-- A4 -->
+    <wire from="(110,200)" to="(490,400)"/> <!-- A3 -->
+    <wire from="(110,210)" to="(490,410)"/> <!-- A2 -->
+    <wire from="(110,220)" to="(490,420)"/> <!-- A1 -->
+    <wire from="(110,230)" to="(490,430)"/> <!-- A0 -->
+    <wire from="(110,240)" to="(490,440)"/> <!-- CS (A12) -->
+    <wire from="(110,250)" to="(490,450)"/> <!-- OE (RD) -->
+    <wire from="(110,260)" to="(490,460)"/> <!-- WE (WR) -->
+  </circuit>
+</project>
