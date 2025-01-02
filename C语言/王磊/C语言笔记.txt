@@ -1,0 +1,86 @@
+Printf
+%【flags】【width】【.prec][hiL]type
+Flag     含义
+-          左对齐
++         在前面放+或-
+(space)正数留空
+0         0填充
+
+
+width或prec       含义
+number              最小字符数
+*                        下一个参数是字符数
+.number            小数点后的位数
+.*                       下一个参数是小数点后的位数
+
+
+
+类型修饰      含义
+hh               单个字节
+h                 short
+l                  long
+ll                 long long
+L                 long double
+
+
+type          用于
+i或d          int
+u               unsigned int
+o               八进制
+x                十六进制
+X               字母大写的十六进制
+f或F            float.6
+e或E            指数
+g                float
+G                float
+a或A           十六进制浮点
+c                 char
+S                 字符串
+p                 指针
+n                读入/写入的个数
+
+
+scanf： %[flag]type
+
+flag        含义
+*            跳过
+数字       最大字符数
+hh         char
+h           short
+l             long double
+ll            long long
+L            long double
+
+
+type       用于
+d            int
+i	    整数，可能为十六进制或八进制
+u           unsigned int
+o           八进制
+x           十六进制
+a,e,f,g   float
+c           char
+s 	  字符串（单词）
+[...]       所允许的字符
+p   	指针
+
+
+文件的输入和输出
+FILE  
+
+
+r          打开只读
+r+        打开读写
+w         打开读写。如果不存在则新建，如果存在则清空
+a         打开追加。 如果不存在则新建，如果存在则清空
+..x        只新建，如果文件已存在则不能打开
+
+
+
+按位运算
+.&   按位的与
+.|     按位的或
+.~    按位取反
+.^    按位的异或
+.<<  左移
+.>>  右移

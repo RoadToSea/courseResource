@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>console_2.sql</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+console_2.sql</font>
+</center></td></tr></table>
+<pre><span class="s0">create database </span><span class="s1">天然气计量表</span><span class="s0">;</span>
+<span class="s0">use </span><span class="s1">天然气计量表</span><span class="s0">;</span>
+<span class="s0">create table </span><span class="s1">天然气公司(</span>
+    <span class="s1">公司编号 </span><span class="s0">int primary key unique ,</span>
+    <span class="s1">公司名称 </span><span class="s0">varchar</span><span class="s1">(</span><span class="s2">20</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">联系电话 </span><span class="s0">char</span><span class="s1">(</span><span class="s2">15</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">联系人 </span><span class="s0">char</span><span class="s1">(</span><span class="s2">10</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">联系地址 </span><span class="s0">varchar</span><span class="s1">(</span><span class="s2">255</span><span class="s1">)</span>
+<span class="s1">)</span><span class="s0">;</span>
+<span class="s0">create table </span><span class="s1">计量设备(</span>
+    <span class="s1">公司编号 </span><span class="s0">int,</span>
+    <span class="s1">设备序列号 </span><span class="s0">int unique ,</span>
+    <span class="s1">编码口令 </span><span class="s0">varchar</span><span class="s1">(</span><span class="s2">255</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">设备型号 </span><span class="s0">char</span><span class="s1">(</span><span class="s2">20</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">出厂日期 </span><span class="s0">DATETIME,</span>
+    <span class="s0">primary key </span><span class="s1">(公司编号</span><span class="s0">,</span><span class="s1">设备序列号)</span>
+<span class="s1">)</span><span class="s0">;</span>
+<span class="s0">alter table </span><span class="s1">计量设备 </span><span class="s0">add constraint </span><span class="s1">fk_计量设备_天然气公司 </span><span class="s0">foreign key </span><span class="s1">(公司编号) </span><span class="s0">references </span><span class="s1">天然气公司(公司编号)</span><span class="s0">;</span>
+<span class="s0">create table </span><span class="s1">检测地点(</span>
+    <span class="s1">公司编号 </span><span class="s0">int,</span>
+    <span class="s1">地点编号 </span><span class="s0">int unique ,</span>
+    <span class="s1">计量设备序列号 </span><span class="s0">int unique ,</span>
+    <span class="s1">纬度 </span><span class="s0">double,</span>
+    <span class="s1">经度 </span><span class="s0">double,</span>
+    <span class="s1">名称 </span><span class="s0">char</span><span class="s1">(</span><span class="s2">20</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">备注 </span><span class="s0">varchar</span><span class="s1">(</span><span class="s2">255</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s1">安全负责人 </span><span class="s0">char</span><span class="s1">(</span><span class="s2">10</span><span class="s1">)</span><span class="s0">,</span>
+    <span class="s0">primary key </span><span class="s1">(公司编号</span><span class="s0">,</span><span class="s1">地点编号</span><span class="s0">,</span><span class="s1">计量设备序列号)</span>
+<span class="s1">)</span><span class="s0">;</span>
+<span class="s0">alter table </span><span class="s1">检测地点 </span><span class="s0">add constraint </span><span class="s1">fk_检测地点_计量设备 </span><span class="s0">foreign key </span><span class="s1">(计量设备序列号) </span><span class="s0">references </span><span class="s1">计量设备(设备序列号)</span><span class="s0">;</span>
+<span class="s0">alter table </span><span class="s1">检测地点 </span><span class="s0">add constraint </span><span class="s1">fk_检测地点_天然气公司 </span><span class="s0">foreign key </span><span class="s1">(公司编号) </span><span class="s0">references </span><span class="s1">天然气公司(公司编号)</span><span class="s0">;</span>
+<span class="s0">create table </span><span class="s1">测量数据包(</span>
+    <span class="s1">设备序列号 </span><span class="s0">int,</span>
+    <span class="s1">时间戳 </span><span class="s0">DATETIME unique ,</span>
+    <span class="s1">温度 </span><span class="s0">double,</span>
+    <span class="s1">压力 </span><span class="s0">double,</span>
+    <span class="s1">电池电压 </span><span class="s0">double,</span>
+    <span class="s1">工况流量 </span><span class="s0">double,</span>
+    <span class="s1">累计流量 </span><span class="s0">double,</span>
+    <span class="s0">primary key </span><span class="s1">(设备序列号</span><span class="s0">,</span><span class="s1">时间戳)</span>
+<span class="s1">)</span><span class="s0">;</span>
+<span class="s3"># TODO 添加外键</span>
+<span class="s3"># TODO 累计流量添加触发器</span>
+<span class="s0">alter table </span><span class="s1">测量数据包 </span><span class="s0">add constraint </span><span class="s1">fk_测量数据包_计量设备 </span><span class="s0">foreign key </span><span class="s1">(设备序列号) </span><span class="s0">references </span><span class="s1">计量设备(设备序列号)</span><span class="s0">;</span>
+<span class="s3">#累计流量每次操作后自动更新增加工况流量</span>
+<span class="s0">create definer </span><span class="s1">= root@localhost </span><span class="s0">trigger </span><span class="s1">before_insert_trigger</span>
+    <span class="s0">before insert</span>
+    <span class="s0">on </span><span class="s1">测量数据包</span>
+    <span class="s0">for each row</span>
+<span class="s0">BEGIN</span>
+    <span class="s0">DECLARE </span><span class="s1">last_all_value </span><span class="s0">DOUBLE;</span>
+
+    <span class="s3">-- 获取上一行的累计流量列的值</span>
+    <span class="s0">SELECT </span><span class="s1">累计流量 </span><span class="s0">INTO </span><span class="s1">last_all_value</span>
+    <span class="s0">FROM </span><span class="s1">测量数据包</span>
+    <span class="s0">WHERE </span><span class="s1">时间戳 = (</span><span class="s0">SELECT </span><span class="s1">MAX(时间戳) </span><span class="s0">FROM </span><span class="s1">测量数据包)</span><span class="s0">;</span>
+
+    <span class="s3">-- 如果没有上一行的值，将last_all_value设置为0或者你认为合适的初始值</span>
+    <span class="s0">IF </span><span class="s1">last_all_value </span><span class="s0">IS NULL THEN</span>
+        <span class="s0">SET </span><span class="s1">last_all_value = </span><span class="s2">0</span><span class="s0">;</span>
+    <span class="s0">END IF;</span>
+
+    <span class="s3">-- 设置新行的累计流量列的值为上一行的all值加上工况流量的值</span>
+    <span class="s0">SET </span><span class="s1">NEW.累计流量 = last_all_value + NEW.工况流量</span><span class="s0">;</span>
+<span class="s0">END;</span>
+</pre>
+</body>
+</html>

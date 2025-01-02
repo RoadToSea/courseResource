@@ -1,0 +1,58 @@
+create database 授课管理
+go
+use 授课管理
+go
+Create table 教师表
+(
+教师号 char(10) primary key,
+教师名 char(8) not null,
+性别 char(2) check(性别 in('男','女')),
+职称 char(6) check(职称 in('助教','讲师','副教授','教授')),
+学历 char(6) check(学历 in('本科','硕士','博士','博士后')),
+出生日期 smalldatetime,
+所在部门 char(20)
+)
+Create table 课程表 
+(
+课程号 char(8) primary key,
+课程名 varchar(30) not null,
+学分 int check(学分 between 1 and 8),
+开课学期 int check(开课学期 between 1 and 12),
+课程性质 char(4) check(课程性质 in('必修','选修')),
+考试性质 char(4) check(考试性质 in('考试','考查')),
+授课时数 int check(授课时数 <= 68),
+实践时数 int
+)
+Create table 授课表
+(
+primary key(课程号,教师号,授课学年,授课学期),
+课程号 char(8) not null,
+教师号 char(10) not null,
+授课学年 char(4),
+授课学期 int,
+授课类别 char(6) check(授课类别 in('主讲','辅导','带实验')),
+授课时数 int default'32'
+foreign key(课程号) references 课程表(课程号),
+foreign key(教师号) references 教师表(教师号),
+)
+go
+insert into 课程表 values('74012002','大学英语',5,1,'必修','考试',64,0)
+insert into 课程表 values('74012011','C语言程序设计',4,2,'必修','考试',56,20)
+insert into 课程表 values('74012012','会计学',3,4,'选修','考查',48,16)
+insert into 课程表 values('74012018','石油工程概论',3,2,'选修','考查',48,0)
+insert into 课程表 values('74012035','数据库及应用',4,4,'必修','考试',56,16)
+insert into 课程表 values('74012048','数据结构',4,3,'必修','考试',64,0)
+insert into 教师表 values('2006310001','赵刚','男','教授','硕士',1975-08-08,'计科院')
+insert into 教师表 values('2006310002','王阳','女','副教授','硕士',1980-11-02,'计科院')
+insert into 教师表 values('2006310003','张贺轩','男','讲师','博士',1987-11-01,'化工院')
+insert into 教师表 values('2006310004','范冰冰','女','副教授','博士',1983-01-01,'外语系')
+insert into 教师表 values('2006310005','章子怡','女','教授','硕士',1978-02-03,'经管院')
+insert into 教师表 values('2006310006','刘诗诗','女','讲师','本科',1989-05-02,'石工院')
+insert into 教师表 values('2006310007','黄晓明','男','副教授','硕士',1978-10-02,'石工院')
+insert into 授课表 values('74012011','2006310001',1,2,'主讲',56)
+insert into 授课表 values('74012035','2006310002',2,4,'主讲',56)
+insert into 授课表 values('74012048','2006310001',2,3,'辅导',16)
+insert into 授课表 values('74012018','2006310006',1,2,'辅导',20)
+insert into 授课表 values('74012012','2006310005',2,3,'主讲',48)
+insert into 授课表 values('74012002','2006310004',1,1,'主讲',64)
+insert into 授课表 values('74012011','2006310006',1,2,'带实验',20)

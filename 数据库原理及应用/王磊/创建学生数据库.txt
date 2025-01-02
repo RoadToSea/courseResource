@@ -1,0 +1,74 @@
+create database 学生
+go
+use 学生
+go
+CREATE TABLE Student (
+	Sno char (7) PRIMARY KEY  ,
+	Sname char (10)  NOT NULL ,
+	Ssex char (2) check(ssex in('男','女')) ,
+	Sage tinyint  ,
+	Sdept char (20) 
+)
+
+CREATE TABLE Course (
+	Cno char (10) PRIMARY KEY ,
+	Cname char (20)  NOT NULL ,
+	Ccredit tinyint  ,
+	Semester tinyint  ,
+)
+
+CREATE TABLE sc (
+	sno char (7) NOT NULL ,
+	cno char (10) NOT NULL ,
+	grade smallint  ,
+	XKLB char (6)  ,
+	 PRIMARY KEY(sno,cno),
+	 FOREIGN KEY 
+	(
+		cno
+	) REFERENCES Course (
+		Cno
+	),
+	 FOREIGN KEY 
+	(
+		sno
+	) REFERENCES Student (
+		Sno
+	),
+	 CHECK (grade >= 0 and grade <= 100)
+) 
+
+go
+
+insert student values('9512101','李勇','男',19,'计算机系')
+insert student values('9512102','刘晨','男',20,'计算机系')
+insert student values('9512103','王敏','女',20,'计算机系')
+insert student values('9521101','张立','男',22,'信息系')
+insert student values('9521102','吴宾','女',21,'信息系')
+insert student values('9521103','张海','男',20,'信息系')
+insert student values('9531101','钱小平','女',18,'数学系')	 
+insert student values('9531102','王大力','男',19,'数学系')	
+
+insert course values('c01','计算机文化学',3,1)	
+insert course values('c02','VB',2,3)
+insert course values('c03','计算机网络',4,7)
+insert course values('c04','数据库基础',6,6)
+insert course values('c05','高等数学',8,2)
+insert course values('c06','数据结构',5,4)
+
+insert sc values('9512101','c01',90,'必修')
+insert sc values('9512101','c02',86,'选修')
+insert sc values('9512101','c06',NULL,'必修')
+insert sc values('9512102','c02',78,'选修')
+insert sc values('9512102','c04',66,'必修')
+insert sc values('9521102','c01',82,'选修')
+insert sc values('9521102','c02',75,'选修')
+insert sc values('9521102','c04',92,'必修')
+insert sc values('9521102','c05',50,'必修')
+insert sc values('9521103','c02',68,'选修')
+insert sc values('9521103','c06',NULL,'必修')
+insert sc values('9531101','c01',80,'选修')
+insert sc values('9531101','c05',95,'必修')
+insert sc values('9531102','c05',85,'必修')
+go
+
